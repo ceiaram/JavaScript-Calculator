@@ -1,0 +1,39 @@
+table {
+  margin-left: auto;
+  margin-right: auto;
+}
+.previous-operand {
+  color: lightgray;
+}
+
+.current-operand span {
+  color: grey;
+}
+
+#display {
+  border-radius: 5px;
+  border: 1px solid grey;
+  width: 210px;
+  height: 50px;
+  padding: 5px;
+}
+
+#equals {
+  background-color: dodgerblue;
+  color: whitesmoke;
+}
+
+input[type="button"].first-row {
+  background-color: grey;
+}
+
+input[type="button"].last-col {
+  background-color: grey;
+}
+
+input[type="button"] {
+  background-color: lightgray;
+  height: 50px;
+  width: 50px;
+  border-radius: 10px;
+}

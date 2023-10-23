@@ -1,0 +1,51 @@
+<html>
+  <head>
+    <title>Welcome to my Calculator!</title>
+    <link rel="stylesheet" href="styles.css" />
+    <script src="script.js"></script>
+  </head>
+
+  <body>
+    <table>
+      <tr>
+
+        <td colspan="4" id="display">
+            <div id="previous-operand">hello</div>
+            <div id="current-operand">there</div>
+        </td>
+      </tr>
+
+      <tr>
+        <td><input type=button class="first-row data-operation" value="(" ></input></td>
+        <td><input type=button class="first-row data-operation" value=")" ></input></td>
+        <td><input type=button class="first-row data-operation" value="%" ></input></td>
+        <td><input type=button class="first-row" id="all-clear" value="AC"></input></td>
+      </tr>
+
+      <tr>
+        <td><input type=button class="data-number" value="7" ></input></td>
+        <td><input type=button class="data-number" value="8" ></input></td>
+        <td><input type=button class="data-number" value="9" ></input></td>
+        <td><input type=button class="last-col data-operation" value="/"></input></td>
+      </tr>
+      <tr>
+        <td><input type=button class="data-number" value="4"></input></td>
+        <td><input type=button class="data-number" value="5"></input></td>
+        <td><input type=button class="data-number" value="6"></input></td>
+        <td><input type=button class="last-col data-operation" value="*"></input></td>
+      </tr>
+      <tr>
+        <td><input type=button class="data-number" value="1"></input></td>
+        <td><input type=button class="data-number" value="2"></input></td>
+        <td><input type=button class="data-number" value="3"></input></td>
+        <td><input type=button class="last-col data-operation" value="-"></input></td>
+      </tr>
+      <tr>
+        <td><input type=button class="data-number" value="0"></input></td>
+        <td><input type=button class="data-number" value="."></input></td>
+        <td><input type=button id="equals" value="="></input></td>
+        <td><input type=button class="last-col data-operation" value="+"></input></td>
+      </tr>
+    </table>
+  </body>
+</html>
