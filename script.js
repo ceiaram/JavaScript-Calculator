@@ -20,8 +20,13 @@ class Calculator {
   }
 
   clear() {
+    // first set varibles to empty input
     this.currentOperand = "";
     this.previousOperand = "";
+
+    // than set the text to empty input variables
+    this.currentOperandTextElement.innerText = this.currentOperand;
+    this.previousOperandTextElement.innerText = this.previousOperand;
   }
 
   appendNum(num) {
@@ -46,10 +51,10 @@ document.addEventListener("DOMContentLoaded", function () {
   const previousOperandTextElement =
     document.getElementById("previous-operand");
   const currentOperandTextElement = document.getElementById("current-operand");
-  const numbers = document.querySelectorAll(".data-number");
-  const operations = document.querySelectorAll(".data-operation");
-  const allClear = document.querySelector("#all-clear");
-  const equals = document.querySelector("#equals");
+  const numberButtons = document.querySelectorAll(".data-number");
+  const operationButtons = document.querySelectorAll(".data-operation");
+  const allClearButton = document.querySelector("#all-clear");
+  const equalButton = document.querySelector("#equals");
 
   // Create a calculator
   const calculator = new Calculator(
@@ -58,11 +63,16 @@ document.addEventListener("DOMContentLoaded", function () {
   );
 
   // For each number, add a listener
-  numbers.forEach((input) => {
+  numberButtons.forEach((input) => {
     // When input is clicked, append the value and update the display
     input.addEventListener("click", () => {
       calculator.appendNum(input.value);
       calculator.updateDisplay();
     });
+  });
+
+  // Clear both divs when AC is clicked
+  allClearButton.addEventListener("click", () => {
+    calculator.clear();
   });
 });
