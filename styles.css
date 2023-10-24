@@ -2,12 +2,13 @@ table {
   margin-left: auto;
   margin-right: auto;
 }
-.previous-operand {
-  color: lightgray;
+
+#previous-operand {
+  color: grey;
 }
 
-.current-operand span {
-  color: grey;
+#current-operand {
+  color: black;
 }
 
 #display {

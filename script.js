@@ -20,13 +20,10 @@ class Calculator {
   }
 
   clear() {
-    // first set varibles to empty input
+    // set varibles to empty input
     this.currentOperand = "";
     this.previousOperand = "";
-
-    // than set the text to empty input variables
-    this.currentOperandTextElement.innerText = this.currentOperand;
-    this.previousOperandTextElement.innerText = this.previousOperand;
+    this.operation = undefined;
   }
 
   appendNum(num) {
@@ -34,15 +31,58 @@ class Calculator {
   }
 
   chooseOperation(operation) {
-    // You can implement this function to handle operations.
+    // Cannot use operation if there is no cuurent operand
+    if (this.currentOperand === "") return;
+    // Compute operation if there is a pervious operation
+    if (this.previousOperand !== "") {
+      this.compute();
+    }
+    this.operation = operation;
+    this.previousOperand = this.currentOperand;
+    this.currentOperand = "";
   }
 
   compute() {
-    // You can implement this function to compute results.
+    let result;
+    const prev = parseFloat(this.previousOperand);
+    const curr = parseFloat(this.currentOperand);
+    // Make sure there is a previous or current operand when computing
+    if (isNaN(prev) || isNaN(curr)) return;
+
+    switch (this.operation) {
+      case "/":
+        result = prev / curr;
+        break;
+      case "*":
+        result = prev * curr;
+        break;
+      case "-":
+        result = prev - curr;
+        break;
+      case "+":
+        result = prev + curr;
+        break;
+      case "%":
+        result = prev % curr;
+        break;
+      default:
+        console.log("Not an operation");
+        return;
+    }
+
+    this.previousOperand = " ";
+    this.operation = undefined;
+    this.currentOperand = result;
   }
 
   updateDisplay() {
     this.currentOperandTextElement.innerText = this.currentOperand;
+    if (this.operation != undefined) {
+      this.previousOperandTextElement.innerText =
+        this.previousOperand + " " + this.operation;
+    } else {
+      this.previousOperandTextElement.innerText = this.previousOperand;
+    }
   }
 }
 
@@ -71,8 +111,23 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   });
 
+  // For each opertaion, add a listener
+  operationButtons.forEach((input) => {
+    // When input is clicked, update the previous and current operand
+    input.addEventListener("click", () => {
+      calculator.chooseOperation(input.value);
+    });
+  });
+
   // Clear both divs when AC is clicked
   allClearButton.addEventListener("click", () => {
     calculator.clear();
+    calculator.updateDisplay();
+  });
+
+  // Compute results when equals is clicked
+  equalButton.addEventListener("click", () => {
+    calculator.compute();
+    calculator.updateDisplay();
   });
 });
