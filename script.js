@@ -74,6 +74,9 @@ class Calculator {
     this.operation = undefined;
     this.currentOperand = result;
   }
+  getDisplayNumber(num) {
+    return num;
+  }
 
   updateDisplay() {
     this.currentOperandTextElement.innerText = this.currentOperand;

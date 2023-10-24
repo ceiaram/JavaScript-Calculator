@@ -2,6 +2,12 @@ table {
   margin-left: auto;
   margin-right: auto;
 }
+#delete {
+  width: 100%;
+}
+#all-clear {
+  width: 100%;
+}
 
 #previous-operand {
   color: grey;
