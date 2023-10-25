@@ -26,6 +26,14 @@ class Calculator {
     this.operation = undefined;
   }
 
+  deleteNum() {
+    const lengthOfNum = String(this.currentOperand).length;
+    const newOperand = this.currentOperand.slice(0, lengthOfNum - 1);
+
+    // Set new operand to current operand
+    this.currentOperand = newOperand;
+  }
+
   appendNum(num) {
     this.currentOperand += num;
   }
@@ -81,8 +89,7 @@ class Calculator {
   updateDisplay() {
     this.currentOperandTextElement.innerText = this.currentOperand;
     if (this.operation != undefined) {
-      this.previousOperandTextElement.innerText =
-        this.previousOperand + " " + this.operation;
+      this.previousOperandTextElement.innerText = `${this.previousOperand}  ${this.operation}`;
     } else {
       this.previousOperandTextElement.innerText = this.previousOperand;
     }
@@ -98,6 +105,7 @@ document.addEventListener("DOMContentLoaded", function () {
   const operationButtons = document.querySelectorAll(".data-operation");
   const allClearButton = document.querySelector("#all-clear");
   const equalButton = document.querySelector("#equals");
+  const deleteButton = document.querySelector("#delete");
 
   // Create a calculator
   const calculator = new Calculator(
@@ -125,6 +133,12 @@ document.addEventListener("DOMContentLoaded", function () {
   // Clear both divs when AC is clicked
   allClearButton.addEventListener("click", () => {
     calculator.clear();
+    calculator.updateDisplay();
+  });
+
+  // Delete the last number of the operand
+  deleteButton.addEventListener("click", () => {
+    calculator.deleteNum();
     calculator.updateDisplay();
   });
 
