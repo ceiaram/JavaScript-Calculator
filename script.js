@@ -82,16 +82,44 @@ class Calculator {
     this.operation = undefined;
     this.currentOperand = result;
   }
+
+  // Adds commas to numbers
   getDisplayNumber(num) {
-    return num;
+    // Split number to two parts: before the decimal place and after the decimal place
+    const stringNum = num.toString();
+    const integerDigits = parseFloat(stringNum.split(".")[0]);
+    const decimalDigits = stringNum.split(".")[1];
+
+    let integerDisplay;
+    // If not an integer value (nothing...)
+    if (isNaN(integerDigits)) {
+      integerDisplay = "";
+    } else {
+      // If user entered an integer value, there can never be any decimal places
+      integerDisplay = integerDigits.toLocaleString("en", {
+        maximumFractionDigits: 0,
+      });
+    }
+
+    // There are decimal digits that the user has entered
+    if (decimalDigits != null) {
+      return `${integerDisplay}.${decimalDigits}`;
+    } else {
+      return integerDisplay;
+    }
   }
 
   updateDisplay() {
-    this.currentOperandTextElement.innerText = this.currentOperand;
+    this.currentOperandTextElement.innerText = this.getDisplayNumber(
+      this.currentOperand
+    );
+
     if (this.operation != undefined) {
-      this.previousOperandTextElement.innerText = `${this.previousOperand}  ${this.operation}`;
+      this.previousOperandTextElement.innerText = `${this.getDisplayNumber(
+        this.previousOperand
+      )}  ${this.operation}`;
     } else {
-      this.previousOperandTextElement.innerText = this.previousOperand;
+      this.previousOperandTextElement.innerText = "";
     }
   }
 }
